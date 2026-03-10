@@ -1,13 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>3D Rotating Sara Khan</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: #0f0f1a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      perspective: 1000px;           /* ← very important for 3D feeling */
+      overflow: hidden;
+    }
+
+    .scene {
+      width: 380px;
+      height: 580px;
+      perspective: 1200px;           /* can be on body or here */
+    }
+
+    .card {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      animation: rotate 16s linear infinite;   /* ← continuous rotation */
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.7);
+      backface-visibility: hidden;   /* prevents weird flickering */
+    }
+
+    @keyframes rotate {
+      from {
+        transform: rotateY(0deg);
+      }
+      to {
+        transform: rotateY(360deg);
+      }
+    }
+
+    /* Optional: pause on hover */
+    .card:hover {
+      animation-play-state: paused;
+    }
+
+    /* Optional: subtle shine / depth effect */
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(255,255,255,0.12) 0%,
+        transparent 40%,
+        transparent 60%,
+        rgba(255,255,255,0.08) 100%
+      );
+      pointer-events: none;
+      border-radius: 12px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to My Page</h1>
-    <img src="IMG-20260228-WA0000.jpg" alt="My Image">
-    <p>This is a sample page.</p>
+
+  <div class="scene">
+    <div class="card">
+      <img src="https://raw.githubusercontent.com/aceofheart889-ai/360/main/IMG-20260228-WA0000.jpg" alt="Sara Khan Special Agent">
+    </div>
+  </div>
+
 </body>
 </html>
